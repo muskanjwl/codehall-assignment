@@ -92,19 +92,21 @@ function App() {
             </button>
           </div>
           <div className="flex justify-between flex-wrap gap-10 p-10 relative">
-            {booksData?.docs?.length > 0 &&
-              booksData.docs.map((book: any, index: number) => {
-                return (
-                  <BookCard
-                    image={`https://covers.openlibrary.org/b/isbn/${coverIDs[index]}-S.jpg`}
-                    heading={book.title}
-                    authorName={book.author_name[0]}
-                    onClick={() => {
-                      setSelectedAuthor(book.author_key);
-                    }}
-                  />
-                );
-              })}
+            {booksData?.docs?.length > 0
+              ? booksData.docs?.map((book: any, index: number) => {
+                  return (
+                    <BookCard
+                      image={`https://covers.openlibrary.org/b/isbn/${coverIDs[index]}-S.jpg`}
+                      heading={book.title}
+                      authorName={book.author_name[0]}
+                      onClick={() => {
+                        setSelectedAuthor(book.author_key);
+                      }}
+                    />
+                  );
+                })
+              : "No Result found"}
+
             {authorData?.name && (
               <AuthorModal
                 authorName={authorData.name}
